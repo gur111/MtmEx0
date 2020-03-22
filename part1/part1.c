@@ -45,7 +45,7 @@ int main(void) {
     for (int i = 0; i < count; i++) {
         if (!readNumber(&num)){
             free(logs);
-            exit(1);
+            return 1;
         }
         pow(10, 4);
         logRes = (double) log2l(num);
