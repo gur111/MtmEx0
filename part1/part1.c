@@ -59,7 +59,7 @@ int main(void) {
         printf("The number %ld is a power of 2: %ld = 2^%d\n", num, num, logs[i]);
     }
 
-    printf("Total exponent sum is %d", sum);
+    printf("Total exponent sum is %d\n", sum);
 
     free(logs);
 
