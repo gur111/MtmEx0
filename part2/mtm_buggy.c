@@ -90,7 +90,7 @@ char* readWord() {
 }
 
 char** readWords(int size) {
-	char** words = malloc(size * sizeof(*words));
+	char** words = calloc(size, sizeof(char *));
 	if (words == NULL) {
 		return NULL;
 	}
