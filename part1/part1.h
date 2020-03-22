@@ -4,7 +4,7 @@
 
 int readInputSize(void);
 
-long readNumber(void);
+int readNumber(long *result);
 
 
 #endif //MTMEX0_EX0PART1_H

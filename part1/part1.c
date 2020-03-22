@@ -16,7 +16,7 @@ int readInputSize(void) {
     return size;
 }
 
-long readNumber(void) {
+int readNumber(long *result) {
     long num;
     char buff[MAX_INT_AS_STR_SIZE], *endptr;
 
@@ -26,10 +26,11 @@ long readNumber(void) {
 
     if (buff == endptr || *endptr != '\0') {
         printf("Invalid number\n");
-        exit(1);
+        return -1;
     }
 
-    return num;
+    *result = num;
+    return 0;
 }
 
 
@@ -42,7 +43,10 @@ int main(void) {
     printf("Enter numbers:\n");
 
     for (int i = 0; i < count; i++) {
-        num = readNumber();
+        if (!readNumber(&num)){
+            free(logs);
+            exit(1);
+        }
         pow(10, 4);
         logRes = (double) log2l(num);
         if ((double) logRes == (int) logRes) {
