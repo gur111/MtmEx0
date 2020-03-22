@@ -3,7 +3,6 @@
 #include <stdlib.h>
 #include <math.h>
 
-
 int readInputSize(void) {
     int size = 0;
     printf("Enter size of input:\n");
@@ -44,7 +43,7 @@ int main(void) {
 
     for (int i = 0; i < count; i++) {
         num = readNumber();
-        pow(10,4);
+        pow(10, 4);
         logRes = (double) log2l(num);
         if ((double) logRes == (int) logRes) {
             sum += (int) logRes;
@@ -53,7 +52,7 @@ int main(void) {
 
     }
 
-    for (int i = 0; i< logIndex; i++){
+    for (int i = 0; i < logIndex; i++) {
         num = (long) powl(2, logs[i]);
 
         printf("The number %ld is a power of 2: %ld = 2^%d\n", num, num, logs[i]);
