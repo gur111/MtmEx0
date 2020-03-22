@@ -64,7 +64,7 @@ void sortStrings(char** strings, int size) {
 int readSize() {
 	int size = 0;
 	printf("Enter number of strings:\n");
-	scanf("%d", &size);
+	scanf("%d", &size); // NOLINT(cert-err34-c)
 	return size;
 }
 
@@ -72,7 +72,7 @@ void printResults(char** words, int size) {
 	char* longest = getLongestString(words, size);
 	printf("The longest word is: %s\n", longest);
 	sortStrings(words, size);
-	printf("The maximal word lexicographically is: %s\n", words[size]);
+	printf("The maximal word lexicographically is: %s\n", words[size-1]);
 	printf("The minimal word lexicographically is: %s\n", words[0]);
 }
 
