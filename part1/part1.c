@@ -1,15 +1,52 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <math.h>
+#include <stdbool.h>
 
 #define MAX_LONG_AS_STR_SIZE 21 // This is because the int max size is 19 digits + sign + \0
-
+#define INVALID (-1)
+/* Reads a number to be used as input size */
 int readInputSize(void);
 
-int readNumber(long *result);
+/* Reads a number from the user */
+bool readNumber(long *result);
 
-int main(void);
+/* Simplified implementation of log2
+ * Returns an integer, returns INVALID if the result is not an integer */
+int log2(long num);
 
+/*
+ * Calculates and returns the value of 2^exp
+ */
+long pow2(int exp);
+
+
+int log2(long num) {
+    int count = 0;
+    if (num <= 0) {
+        return INVALID;
+    }
+
+    while (num != 1) {
+        if (num % 2 != 0) {
+            return INVALID;
+        }
+        count++;
+        num = num / 2;
+    }
+
+    return count;
+}
+
+long pow2(int exp){
+    if (exp >= 62){
+        printf("The value would be too big");
+        return INVALID;
+    }
+    long res = 1;
+    for(int i= 0; i<exp; i++, res*=2);
+
+    return res;
+}
 
 int readInputSize(void) {
     int size = 0;
@@ -24,7 +61,7 @@ int readInputSize(void) {
     return size;
 }
 
-int readNumber(long *result) {
+bool readNumber(long *result) {
     long num;
     char buff[MAX_LONG_AS_STR_SIZE], *endptr;
 
@@ -34,30 +71,30 @@ int readNumber(long *result) {
 
     if (buff == endptr || *endptr != '\0') {
         printf("Invalid number\n");
-        return -1;
+        return false;
     }
 
     *result = num;
-    return 0;
+    return true;
 }
 
 
 int main(void) {
     int count = readInputSize();
     int sum = 0, *logs = calloc(count, sizeof(int)), logIndex = 0;
-    double logRes;
+    int logRes;
     long num;
 
     printf("Enter numbers:\n");
 
     for (int i = 0; i < count; i++) {
-        if (!readNumber(&num)){
+        if (!readNumber(&num)) {
             free(logs);
             return 1;
         }
-        pow(10, 4);
-        logRes = (double) log2l(num);
-        if ((double) logRes == (int) logRes) {
+
+        logRes = log2(num);
+        if (logRes != INVALID) {
             sum += (int) logRes;
             logs[logIndex++] = (int) logRes;
         }
@@ -65,7 +102,7 @@ int main(void) {
     }
 
     for (int i = 0; i < logIndex; i++) {
-        num = (long) powl(2, logs[i]);
+        num = pow2(logs[i]);
 
         printf("The number %ld is a power of 2: %ld = 2^%d\n", num, num, logs[i]);
     }
