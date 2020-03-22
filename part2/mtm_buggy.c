@@ -97,7 +97,7 @@ char** readWords(int size) {
 	for (int i = 0; i < size; ++i) {
 		words[i] = readWord();
 		if (words[i] == NULL) {
-			freeWords(words, size);
+			freeWords(words, i);
 			return NULL;
 		}
 	}
