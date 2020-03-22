@@ -6,7 +6,7 @@
 int readInputSize(void) {
     int size = 0;
     printf("Enter size of input:\n");
-    scanf("%d", &size);
+    scanf("%d", &size); // NOLINT(cert-err34-c)
 
     if (size <= 0) {
         printf("Invalid size\n");
