@@ -10,9 +10,9 @@ int readInputSize(void);
 /* Reads a number from the user */
 bool readNumber(long *result);
 
-/* Simplified implementation of log2
+/* Simplified implementation of simpleLog2
  * Returns an integer, returns INVALID if the result is not an integer */
-int log2(long num);
+int simpleLog2(long num);
 
 /*
  * Calculates and returns the value of 2^exp
@@ -20,7 +20,7 @@ int log2(long num);
 long pow2(int exp);
 
 
-int log2(long num) {
+int simpleLog2(long num) {
     int count = 0;
     if (num <= 0) {
         return INVALID;
@@ -93,7 +93,7 @@ int main(void) {
             return 1;
         }
 
-        logRes = log2(num);
+        logRes = simpleLog2(num);
         if (logRes != INVALID) {
             sum += (int) logRes;
             logs[logIndex++] = (int) logRes;
