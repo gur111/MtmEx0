@@ -3,7 +3,7 @@
 #include <stdlib.h>
 #include <math.h>
 
-int readInputSize(void) {
+inline int readInputSize(void) {
     int size = 0;
     printf("Enter size of input:\n");
     scanf("%d", &size); // NOLINT(cert-err34-c)
@@ -16,9 +16,9 @@ int readInputSize(void) {
     return size;
 }
 
-int readNumber(long *result) {
+inline int readNumber(long *result) {
     long num;
-    char buff[MAX_INT_AS_STR_SIZE], *endptr;
+    char buff[MAX_LONG_AS_STR_SIZE], *endptr;
 
     scanf("%s", buff);
 
