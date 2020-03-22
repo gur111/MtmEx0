@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CLionExternalBuildManager">
+    <target id="0e6d5d4e-d095-47c5-8af5-41bf3b452f5c" name="Part1" projectName="MtmEx0">
+      <configuration id="842d4a72-9003-479e-a3fb-83fd2f1935aa" name="Part1" toolchainName="System">
+        <build type="TOOL">
+          <tool actionId="Tool_External Tools_Part1" />
+        </build>
+        <clean type="TOOL">
+          <tool actionId="Tool_External Tools_Part1 Clean" />
+        </clean>
+      </configuration>
+    </target>
+  </component>
+</project>
