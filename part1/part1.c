@@ -4,6 +4,7 @@
 
 #define MAX_LONG_AS_STR_SIZE 21 // This is because the int max size is 19 digits + sign + \0
 #define INVALID (-1)
+
 /* Reads a number to be used as input size */
 int readInputSize(void);
 
@@ -81,9 +82,14 @@ bool readNumber(long *result) {
 
 int main(void) {
     int count = readInputSize();
-    int sum = 0, *logs = calloc(count, sizeof(int)), logIndex = 0;
+    int sum = 0, *logs = malloc(count * sizeof(int)), logIndex = 0;
     int logRes;
     long num;
+
+    if (!logs){
+        printf("Failed to allocate memory");
+        return 1;
+    }
 
     printf("Enter numbers:\n");
 
@@ -108,7 +114,6 @@ int main(void) {
     }
 
     printf("Total exponent sum is %d\n", sum);
-
     free(logs);
 
     return 0;
