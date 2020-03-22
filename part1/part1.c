@@ -1,9 +1,17 @@
-#include "part1.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
 
-inline int readInputSize(void) {
+#define MAX_LONG_AS_STR_SIZE 21 // This is because the int max size is 19 digits + sign + \0
+
+int readInputSize(void);
+
+int readNumber(long *result);
+
+int main(void);
+
+
+int readInputSize(void) {
     int size = 0;
     printf("Enter size of input:\n");
     scanf("%d", &size); // NOLINT(cert-err34-c)
@@ -16,7 +24,7 @@ inline int readInputSize(void) {
     return size;
 }
 
-inline int readNumber(long *result) {
+int readNumber(long *result) {
     long num;
     char buff[MAX_LONG_AS_STR_SIZE], *endptr;
 
