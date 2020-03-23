@@ -2,7 +2,8 @@
 #include <stdlib.h>
 #include <stdbool.h>
 
-#define MAX_LONG_AS_STR_SIZE 21 // This is because the int max size is 19 digits + sign + \0
+// This is because the int max size is 19 digits + sign + \0
+#define MAX_LONG_AS_STR_SIZE 21
 #define INVALID (-1)
 
 /* Reads a number to be used as input size */
