@@ -93,6 +93,7 @@ int main(void) {
 
     printf("Enter numbers:\n");
 
+    // Loops through inputs, save the relevant input's log2 results
     for (int i = 0; i < count; i++) {
         if (!readNumber(&num)) {
             free(logs);
@@ -107,6 +108,7 @@ int main(void) {
 
     }
 
+    // Print the results in a pretty format
     for (int i = 0; i < log_index; i++) {
         num = pow2(logs[i]);
 
