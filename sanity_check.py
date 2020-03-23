@@ -33,7 +33,8 @@ class MyTestCase(unittest.TestCase):
     def test_invalids(self):
 
         for _ in range(REPEAT_COUNT):
-            count = random.choice([generate_invalid(), generate_valid(length=6)])
+            count = random.choice([generate_invalid(), generate_valid(length=6), generate_valid(length=6),
+                                   generate_valid(length=6), generate_valid(length=6)])
             num_as_int = is_int(count)
 
             tot = sp.Popen([TOT_PATH], stdin=sp.PIPE, stdout=sp.PIPE, stderr=sp.PIPE)
