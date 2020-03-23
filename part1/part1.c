@@ -82,8 +82,8 @@ bool readNumber(long *result) {
 
 int main(void) {
     int count = readInputSize();
-    int sum = 0, *logs = malloc(count * sizeof(int)), logIndex = 0;
-    int logRes;
+    int sum = 0, *logs = malloc(count * sizeof(int)), log_index = 0;
+    int log_res;
     long num;
 
     if (!logs){
@@ -99,15 +99,15 @@ int main(void) {
             return 0;
         }
 
-        logRes = simpleLog2(num);
-        if (logRes != INVALID) {
-            sum += (int) logRes;
-            logs[logIndex++] = (int) logRes;
+        log_res = simpleLog2(num);
+        if (log_res != INVALID) {
+            sum += (int) log_res;
+            logs[log_index++] = (int) log_res;
         }
 
     }
 
-    for (int i = 0; i < logIndex; i++) {
+    for (int i = 0; i < log_index; i++) {
         num = pow2(logs[i]);
 
         printf("The number %ld is a power of 2: %ld = 2^%d\n", num, num, logs[i]);
