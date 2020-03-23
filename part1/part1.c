@@ -56,7 +56,7 @@ int readInputSize(void) {
 
     if (size <= 0) {
         printf("Invalid size\n");
-        exit(1);
+        exit(0);
     }
 
     return size;
@@ -88,7 +88,7 @@ int main(void) {
 
     if (!logs){
         printf("Failed to allocate memory");
-        return 1;
+        return 0;
     }
 
     printf("Enter numbers:\n");
@@ -96,7 +96,7 @@ int main(void) {
     for (int i = 0; i < count; i++) {
         if (!readNumber(&num)) {
             free(logs);
-            return 1;
+            return 0;
         }
 
         logRes = simpleLog2(num);
