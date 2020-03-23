@@ -115,7 +115,7 @@ int main() {
 	int size = readSize();
 	if (size < 1) {
 		printf("Invalid size\n");
-		return 1;
+		return 0;
 	}
 	char** words = readWords(size);
 	if (words == NULL) {
