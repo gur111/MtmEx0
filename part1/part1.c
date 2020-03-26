@@ -39,13 +39,13 @@ int simpleLog2(long num) {
     return count;
 }
 
-long pow2(int exp){
-    if (exp >= 62){
+long pow2(int exp) {
+    if (exp >= 62) {
         printf("The value would be too big");
         return INVALID;
     }
     long res = 1;
-    for(int i= 0; i<exp; i++, res*=2);
+    for (int i = 0; i < exp; i++, res *= 2);
 
     return res;
 }
@@ -87,7 +87,7 @@ int main(void) {
     int log_res;
     long num;
 
-    if (!logs){
+    if (!logs) {
         printf("Failed to allocate memory");
         return 0;
     }
