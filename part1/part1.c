@@ -51,16 +51,15 @@ long pow2(int exp) {
 }
 
 int readInputSize(void) {
-    int size = 0;
+    long size;
     printf("Enter size of input:\n");
-    scanf("%d", &size); // NOLINT(cert-err34-c)
 
-    if (size <= 0) {
+    if (!readNumber(&size) || size < 1 || (int) size != size) {
         printf("Invalid size\n");
         exit(0);
     }
 
-    return size;
+    return (int) size;
 }
 
 bool readNumber(long *result) {
