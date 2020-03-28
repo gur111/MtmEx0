@@ -71,7 +71,6 @@ bool readNumber(long *result) {
     num = strtol(buff, &endptr, 10);
 
     if (buff == endptr || *endptr != '\0') {
-        printf("Invalid number\n");
         return false;
     }
 
@@ -96,6 +95,7 @@ int main(void) {
     // Loops through inputs, save the relevant input's log2 results
     for (int i = 0; i < count; i++) {
         if (!readNumber(&num)) {
+            printf("Invalid number\n");
             free(logs);
             return 0;
         }
