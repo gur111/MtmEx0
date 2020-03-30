@@ -1,6 +1,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
+#include <errno.h>
+
+// Convert to string
+#define STR_HELPER(x) #x
+#define STR(x) STR_HELPER(x)
 
 // This is because the int max size is 19 digits + sign + \0
 #define MAX_LONG_AS_STR_SIZE 21
@@ -64,13 +69,15 @@ int readInputSize(void) {
 
 bool readNumber(long *result) {
     long num;
-    char buff[MAX_LONG_AS_STR_SIZE], *endptr;
+    // To be able to occupy an extra char so we can detect overflow in buff
+    char buff[MAX_LONG_AS_STR_SIZE+1], *endptr;
 
-    scanf("%s", buff);
+    scanf("%"STR(MAX_LONG_AS_STR_SIZE)"s", buff);
 
+    errno = 0;
     num = strtol(buff, &endptr, 10);
 
-    if (buff == endptr || *endptr != '\0') {
+    if (buff == endptr || *endptr != '\0' || errno != 0) {
         return false;
     }
 
