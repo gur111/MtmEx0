@@ -5,10 +5,10 @@
 
 // Convert to string
 #define STR_HELPER(x) #x
-#define STR(x) STR_HELPER(x)
+#define STRING(x) STR_HELPER(x)
 
 // This is because the int max size is 19 digits + sign + \0
-#define MAX_LONG_AS_STR_SIZE 21
+#define MAX_LONG_AS_STRING_SIZE 21
 #define INVALID (-1)
 
 /* Reads a number to be used as input size */
@@ -19,40 +19,40 @@ bool readNumber(long *result);
 
 /* Simplified implementation of simpleLog2
  * Returns an integer, returns INVALID if the result is not an integer */
-int simpleLog2(long num);
+int simpleLog2(long number);
 
 /*
- * Calculates and returns the value of 2^exp
+ * Calculates and returns the value of 2^exponent
  */
-long pow2(int exp);
+long pow2(int exponent);
 
 
-int simpleLog2(long num) {
+int simpleLog2(long number) {
     int count = 0;
-    if (num <= 0) {
+    if (number <= 0) {
         return INVALID;
     }
 
-    while (num != 1) {
-        if (num % 2 != 0) {
+    while (number != 1) {
+        if (number % 2 != 0) {
             return INVALID;
         }
         count++;
-        num = num / 2;
+        number = number / 2;
     }
 
     return count;
 }
 
-long pow2(int exp) {
-    if (exp >= 62) {
+long pow2(int exponent) {
+    if (exponent >= 62) {
         printf("The value would be too big");
         return INVALID;
     }
-    long res = 1;
-    for (int i = 0; i < exp; i++, res *= 2);
+    long result = 1;
+    for (int i = 0; i < exponent; i++, result *= 2);
 
-    return res;
+    return result;
 }
 
 int readInputSize(void) {
@@ -68,31 +68,33 @@ int readInputSize(void) {
 }
 
 bool readNumber(long *result) {
-    long num;
-    // To be able to occupy an extra char so we can detect overflow in buff
-    char buff[MAX_LONG_AS_STR_SIZE+1], *endptr;
+    long number;
+    // To be able to occupy an extra char so we can detect overflow in buffer
+    char buffer[MAX_LONG_AS_STRING_SIZE + 1], *endptr;
 
-    scanf("%"STR(MAX_LONG_AS_STR_SIZE)"s", buff);
+    scanf("%"STRING(MAX_LONG_AS_STRING_SIZE)"s", buffer);
 
     errno = 0;
-    num = strtol(buff, &endptr, 10);
+    number = strtol(buffer, &endptr, 10);
 
-    if (buff == endptr || *endptr != '\0' || errno != 0) {
+    if (buffer == endptr || *endptr != '\0' || errno != 0) {
         return false;
     }
 
-    *result = num;
+    *result = number;
     return true;
 }
 
 
 int main(void) {
     int count = readInputSize();
-    int sum = 0, *logs = malloc(count * sizeof(int)), log_index = 0;
-    int log_res;
-    long num;
+    int exponent_summation = 0;
+    int *logs_results = malloc(count * sizeof(int));
+    int log_index = 0;
+    int current_log_res;
+    long current_number;
 
-    if (!logs) {
+    if (!logs_results) {
         printf("Failed to allocate memory");
         return 0;
     }
@@ -101,29 +103,29 @@ int main(void) {
 
     // Loops through inputs, save the relevant input's log2 results
     for (int i = 0; i < count; i++) {
-        if (!readNumber(&num)) {
+        if (!readNumber(&current_number)) {
             printf("Invalid number\n");
-            free(logs);
+            free(logs_results);
             return 0;
         }
 
-        log_res = simpleLog2(num);
-        if (log_res != INVALID) {
-            sum += (int) log_res;
-            logs[log_index++] = (int) log_res;
+        current_log_res = simpleLog2(current_number);
+        if (current_log_res != INVALID) {
+            exponent_summation += (int) current_log_res;
+            logs_results[log_index++] = (int) current_log_res;
         }
 
     }
 
     // Print the results in a pretty format
     for (int i = 0; i < log_index; i++) {
-        num = pow2(logs[i]);
-
-        printf("The number %ld is a power of 2: %ld = 2^%d\n", num, num, logs[i]);
+        current_number = pow2(logs_results[i]);
+        printf("The number %ld is a power of 2: %ld = 2^%d\n",
+               current_number, current_number, logs_results[i]);
     }
 
-    printf("Total exponent sum is %d\n", sum);
-    free(logs);
+    printf("Total exponent sum is %d\n", exponent_summation);
+    free(logs_results);
 
     return 0;
 }
